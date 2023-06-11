@@ -10,7 +10,7 @@ int main() {
   Grid grid = Grid();
   grid.debugPrint();
 
-  LBlock block = LBlock();
+  auto block = SBlock();
 
   while (!WindowShouldClose()) {
     BeginDrawing();
