@@ -1,3 +1,4 @@
+#include "blocks.cpp"
 #include "grid.h"
 #include <raylib.h>
 #include <stdlib.h>
@@ -7,14 +8,16 @@ int main() {
   SetTargetFPS(60);
 
   Grid grid = Grid();
-  grid.grid[0][0] = 1;
   grid.debugPrint();
+
+  LBlock block = LBlock();
 
   while (!WindowShouldClose()) {
     BeginDrawing();
 
     ClearBackground(DARKBLUE);
     grid.draw();
+    block.draw();
 
     EndDrawing();
   }
