@@ -2,6 +2,7 @@
 
 #include "block.h"
 #include "grid.h"
+#include <memory>
 #include <vector>
 
 class Game {
@@ -12,10 +13,10 @@ public:
   void draw();
 
 private:
-  std::vector<Block *> blocks = getDefaultBlocks();
-  Block *currentBlock = popRandomBlock();
-  Block *nextBlock = popRandomBlock();
+  std::vector<std::shared_ptr<Block>> blocks = getDefaultBlocks();
+  std::shared_ptr<Block> currentBlock = popRandomBlock();
+  std::shared_ptr<Block> nextBlock = popRandomBlock();
 
-  Block *popRandomBlock();
-  std::vector<Block *> getDefaultBlocks();
+  std::shared_ptr<Block> popRandomBlock();
+  std::vector<std::shared_ptr<Block>> getDefaultBlocks();
 };
