@@ -1,4 +1,5 @@
 #include "block.h"
+#include <iostream>
 
 class LBlock : public Block {
 public:
@@ -13,9 +14,9 @@ public:
                     Position{2, 1}};
   }
 
-  int id() { return 1; }
+  int id() override { return 1; }
 
-  void center() { move(0, 3); }
+  void center() override { move(0, 3); }
 };
 
 class JBlock : public Block {
@@ -31,9 +32,9 @@ public:
                     Position{2, 1}};
   }
 
-  int id() { return 2; }
+  int id() override { return 2; }
 
-  void center() { move(0, 3); }
+  void center() override { move(0, 3); }
 };
 
 class IBlock : public Block {
@@ -49,9 +50,9 @@ public:
                     Position{3, 1}};
   }
 
-  int id() { return 3; }
+  int id() override { return 3; }
 
-  void center() { move(-1, 3); }
+  void center() override { move(-1, 3); }
 };
 
 class OBlock : public Block {
@@ -67,9 +68,9 @@ public:
                     Position{1, 1}};
   }
 
-  int id() { return 4; }
+  int id() override { return 4; }
 
-  void center() { move(0, 4); }
+  void center() override { move(0, 4); }
 };
 
 class SBlock : public Block {
@@ -85,9 +86,9 @@ public:
                     Position{2, 1}};
   }
 
-  int id() { return 5; }
+  int id() override { return 5; }
 
-  void center() { move(0, 3); }
+  void center() override { move(0, 3); }
 };
 
 class TBlock : public Block {
@@ -103,9 +104,9 @@ public:
                     Position{2, 1}};
   }
 
-  int id() { return 6; }
+  int id() override { return 6; }
 
-  void center() { move(0, 3); }
+  void center() override { move(0, 3); }
 };
 
 class ZBlock : public Block {
@@ -121,7 +122,7 @@ public:
                     Position{2, 0}};
   }
 
-  int id() { return 7; }
+  int id() override { return 7; }
 
-  void center() { move(0, 3); }
+  void center() override { move(0, 3); }
 };

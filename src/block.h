@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-struct Block {
+class Block {
 public:
   std::map<int, std::vector<Position>> rotations;
 

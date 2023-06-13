@@ -30,3 +30,7 @@ std::vector<Position> Block::getMovedCellPositions() {
 
   return movedCellPositions;
 };
+
+int Block::id() { return 0; }
+
+void Block::center() { move(0, 3); }
