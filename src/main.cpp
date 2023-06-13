@@ -11,7 +11,7 @@ int main() {
   grid.debugPrint();
 
   auto block = SBlock();
-  block.move(4, 3);
+  block.center();
 
   while (!WindowShouldClose()) {
     BeginDrawing();

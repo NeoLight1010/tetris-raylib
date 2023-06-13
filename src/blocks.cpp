@@ -14,6 +14,8 @@ public:
   }
 
   int id() { return 1; }
+
+  void center() { move(0, 3); }
 };
 
 class JBlock : public Block {
@@ -30,6 +32,8 @@ public:
   }
 
   int id() { return 2; }
+
+  void center() { move(0, 3); }
 };
 
 class IBlock : public Block {
@@ -46,6 +50,8 @@ public:
   }
 
   int id() { return 3; }
+
+  void center() { move(-1, 3); }
 };
 
 class OBlock : public Block {
@@ -62,6 +68,8 @@ public:
   }
 
   int id() { return 4; }
+
+  void center() { move(0, 4); }
 };
 
 class SBlock : public Block {
@@ -78,6 +86,8 @@ public:
   }
 
   int id() { return 5; }
+
+  void center() { move(0, 3); }
 };
 
 class TBlock : public Block {
@@ -94,6 +104,8 @@ public:
   }
 
   int id() { return 6; }
+
+  void center() { move(0, 3); }
 };
 
 class ZBlock : public Block {
@@ -110,4 +122,6 @@ public:
   }
 
   int id() { return 7; }
+
+  void center() { move(0, 3); }
 };

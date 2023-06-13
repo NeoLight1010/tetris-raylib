@@ -12,6 +12,7 @@ public:
   void draw();
   void move(int rows, int columns);
   virtual int id() = 0;
+  virtual void center() = 0;
 
 private:
   int cellSize = 30;
