@@ -6,7 +6,7 @@
 
 struct Block {
 public:
-  std::map<int, std::vector<Position>> cells; // TODO Rename to rotations
+  std::map<int, std::vector<Position>> rotations;
 
   Block();
   void draw();

@@ -7,7 +7,7 @@
 Block::Block(){};
 
 void Block::draw() {
-  std::vector<Position> currentRotationCells = cells[rotationState];
+  std::vector<Position> currentRotationCells = rotations[rotationState];
 
   for (Position cell : getMovedCellPositions()) {
     DrawRectangle(cell.column * cellSize + 1, cell.row * cellSize + 1,
@@ -23,7 +23,7 @@ void Block::move(int rows, int columns) {
 std::vector<Position> Block::getMovedCellPositions() {
   std::vector<Position> movedCellPositions = {};
 
-  for (Position cell : cells[rotationState]) {
+  for (Position cell : rotations[rotationState]) {
     movedCellPositions.push_back(
         Position{cell.row + rowOffset, cell.column + columnOffset});
   }
