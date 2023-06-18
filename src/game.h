@@ -26,4 +26,7 @@ private:
   void moveBlockLeft();
   void moveBlockRight();
   void moveBlockDown();
+
+  void rotateBlockForward();
+  void rotateBlockBackward();
 };

@@ -15,6 +15,9 @@ public:
   virtual void center() = 0;
   std::vector<Position> getMovedCellPositions();
 
+  void rotateForward();
+  void rotateBackward();
+
 private:
   int cellSize = 30;
   int rotationState = 0;

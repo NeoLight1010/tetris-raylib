@@ -46,6 +46,14 @@ void Game::handleInput() {
   case KEY_DOWN:
     moveBlockDown();
     break;
+
+  case KEY_Z:
+    rotateBlockBackward();
+    break;
+
+  case KEY_X:
+    rotateBlockForward();
+    break;
   }
 }
 
@@ -82,5 +90,21 @@ void Game::moveBlockDown() {
 
   if (isBlockOutsideGrid()) {
     currentBlock->move(-1, 0);
+  }
+}
+
+void Game::rotateBlockForward() {
+  currentBlock->rotateForward();
+
+  if (isBlockOutsideGrid()) {
+    currentBlock->rotateBackward();
+  }
+}
+
+void Game::rotateBlockBackward() {
+  currentBlock->rotateBackward();
+
+  if (isBlockOutsideGrid()) {
+    currentBlock->rotateForward();
   }
 }

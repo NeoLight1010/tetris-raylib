@@ -34,3 +34,11 @@ std::vector<Position> Block::getMovedCellPositions() {
 int Block::id() { return 0; }
 
 void Block::center() { move(0, 3); }
+
+void Block::rotateForward() {
+  rotationState = (rotationState + 1) % rotations.size();
+}
+
+void Block::rotateBackward() {
+  rotationState = (rotationState - 1) % rotations.size();
+}
