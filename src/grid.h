@@ -3,16 +3,16 @@
 
 class Grid {
 public:
-  int grid[20][10];
+  static const int NUM_ROWS = 20;
+  static const int NUM_COLUMNS = 10;
+  static const int CELL_SIZE = 30;
+
+  int grid[NUM_ROWS][NUM_COLUMNS];
 
   Grid();
   void debugPrint();
   void draw();
 
 private:
-  int numRows = 20;
-  int numColumns = 10;
-  int cellSize = 30;
-
   void initializeGrid();
 };

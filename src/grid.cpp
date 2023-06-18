@@ -7,16 +7,16 @@
 Grid::Grid() { initializeGrid(); }
 
 void Grid::initializeGrid() {
-  for (int row = 0; row < numRows; row++) {
-    for (int column = 0; column < numColumns; column++) {
+  for (int row = 0; row < NUM_ROWS; row++) {
+    for (int column = 0; column < NUM_COLUMNS; column++) {
       grid[row][column] = 0;
     }
   }
 }
 
 void Grid::debugPrint() {
-  for (int row = 0; row < numRows; row++) {
-    for (int column = 0; column < numColumns; column++) {
+  for (int row = 0; row < NUM_ROWS; row++) {
+    for (int column = 0; column < NUM_COLUMNS; column++) {
       std::cout << grid[row][column] << " ";
     }
 
@@ -27,12 +27,12 @@ void Grid::debugPrint() {
 void Grid::draw() {
   const int padding = 1;
 
-  for (int row = 0; row < numRows; row++) {
-    for (int column = 0; column < numColumns; column++) {
+  for (int row = 0; row < NUM_ROWS; row++) {
+    for (int column = 0; column < NUM_COLUMNS; column++) {
       int cellValue = grid[row][column];
 
-      DrawRectangle(column * cellSize + padding, row * cellSize + padding,
-                    cellSize - padding, cellSize - padding,
+      DrawRectangle(column * CELL_SIZE + padding, row * CELL_SIZE + padding,
+                    CELL_SIZE - padding, CELL_SIZE - padding,
                     getCellColor(cellValue));
     }
   }
