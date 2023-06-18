@@ -11,6 +11,7 @@ public:
 
   Game();
   void draw();
+  void handleInput();
 
 private:
   std::vector<std::shared_ptr<Block>> blocks = getDefaultBlocks();
@@ -19,4 +20,7 @@ private:
 
   std::shared_ptr<Block> popRandomBlock();
   std::vector<std::shared_ptr<Block>> getDefaultBlocks();
+  void moveBlockLeft();
+  void moveBlockRight();
+  void moveBlockDown();
 };

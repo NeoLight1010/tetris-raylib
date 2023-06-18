@@ -10,6 +10,8 @@ int main() {
   auto game = Game();
 
   while (!WindowShouldClose()) {
+    game.handleInput();
+
     BeginDrawing();
 
     ClearBackground(DARKBLUE);

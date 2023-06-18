@@ -1,5 +1,6 @@
 #include "game.h"
 #include "blocks.cpp"
+#include "raylib.h"
 #include <iostream>
 #include <memory>
 #include <random>
@@ -32,3 +33,22 @@ void Game::draw() {
   grid.draw();
   currentBlock->draw();
 };
+
+void Game::handleInput() {
+  int keyPressed = GetKeyPressed();
+  switch (keyPressed) {
+  case KEY_LEFT:
+    moveBlockLeft();
+    break;
+  case KEY_RIGHT:
+    moveBlockRight();
+    break;
+  case KEY_DOWN:
+    moveBlockDown();
+    break;
+  }
+}
+
+void Game::moveBlockLeft() { currentBlock->move(0, -1); }
+void Game::moveBlockRight() { currentBlock->move(0, 1); }
+void Game::moveBlockDown() { currentBlock->move(1, 0); }
