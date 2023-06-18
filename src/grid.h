@@ -12,6 +12,7 @@ public:
   Grid();
   void debugPrint();
   void draw();
+  bool isCellOutside(int row, int column);
 
 private:
   void initializeGrid();

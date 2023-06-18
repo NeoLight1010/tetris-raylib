@@ -49,6 +49,38 @@ void Game::handleInput() {
   }
 }
 
-void Game::moveBlockLeft() { currentBlock->move(0, -1); }
-void Game::moveBlockRight() { currentBlock->move(0, 1); }
-void Game::moveBlockDown() { currentBlock->move(1, 0); }
+bool Game::isBlockOutsideGrid() {
+  std::vector<Position> currentBlockCells =
+      currentBlock->getMovedCellPositions();
+
+  for (auto cellPosition : currentBlockCells) {
+    if (grid.isCellOutside(cellPosition.row, cellPosition.column)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+void Game::moveBlockLeft() {
+  currentBlock->move(0, -1);
+
+  if (isBlockOutsideGrid()) {
+    currentBlock->move(0, 1);
+  }
+}
+
+void Game::moveBlockRight() {
+  currentBlock->move(0, 1);
+
+  if (isBlockOutsideGrid()) {
+    currentBlock->move(0, -1);
+  }
+}
+void Game::moveBlockDown() {
+  currentBlock->move(1, 0);
+
+  if (isBlockOutsideGrid()) {
+    currentBlock->move(-1, 0);
+  }
+}

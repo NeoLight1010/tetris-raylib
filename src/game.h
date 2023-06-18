@@ -20,6 +20,9 @@ private:
 
   std::shared_ptr<Block> popRandomBlock();
   std::vector<std::shared_ptr<Block>> getDefaultBlocks();
+
+  bool isBlockOutsideGrid();
+
   void moveBlockLeft();
   void moveBlockRight();
   void moveBlockDown();

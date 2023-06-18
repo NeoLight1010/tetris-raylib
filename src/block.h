@@ -13,12 +13,11 @@ public:
   void move(int rows, int columns);
   virtual int id() = 0;
   virtual void center() = 0;
+  std::vector<Position> getMovedCellPositions();
 
 private:
   int cellSize = 30;
   int rotationState = 0;
   int rowOffset = 0;
   int columnOffset = 0;
-
-  std::vector<Position> getMovedCellPositions();
 };
