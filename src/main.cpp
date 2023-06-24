@@ -3,6 +3,19 @@
 #include <raylib.h>
 #include <stdlib.h>
 
+double lastUpdateTime = 0;
+
+bool deltaTimeHasPassed(double interval) {
+  double currentTime = GetTime();
+
+  if (currentTime - lastUpdateTime > interval) {
+    lastUpdateTime = currentTime;
+    return true;
+  }
+
+  return false;
+}
+
 int main() {
   InitWindow(300, 600, "Tetris");
   SetTargetFPS(60);
@@ -11,6 +24,10 @@ int main() {
 
   while (!WindowShouldClose()) {
     game.handleInput();
+
+    if (deltaTimeHasPassed(0.5)) {
+      game.applyGravity();
+    }
 
     BeginDrawing();
 

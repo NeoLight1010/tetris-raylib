@@ -10,6 +10,7 @@ public:
   Grid grid = Grid();
 
   Game();
+  void applyGravity();
   void draw();
   void handleInput();
 

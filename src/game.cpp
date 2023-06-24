@@ -108,3 +108,5 @@ void Game::rotateBlockBackward() {
     currentBlock->rotateForward();
   }
 }
+
+void Game::applyGravity() { currentBlock->move(1, 0); }
