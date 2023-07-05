@@ -24,6 +24,8 @@ private:
 
   bool isBlockOutsideGrid();
 
+  void lockBlockAndSpawnNextBlock();
+
   void moveBlockLeft();
   void moveBlockRight();
   void moveBlockDown();

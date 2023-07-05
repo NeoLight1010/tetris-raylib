@@ -1,5 +1,6 @@
 #include "game.h"
 #include "blocks.cpp"
+#include "position.h"
 #include "raylib.h"
 #include <iostream>
 #include <memory>
@@ -90,6 +91,7 @@ void Game::moveBlockDown() {
 
   if (isBlockOutsideGrid()) {
     currentBlock->move(-1, 0);
+    lockBlockAndSpawnNextBlock();
   }
 }
 
@@ -109,4 +111,17 @@ void Game::rotateBlockBackward() {
   }
 }
 
-void Game::applyGravity() { currentBlock->move(1, 0); }
+void Game::applyGravity() { moveBlockDown(); }
+
+void Game::lockBlockAndSpawnNextBlock() {
+  std::vector<Position> currentBlockCells =
+      currentBlock->getMovedCellPositions();
+
+  for (Position cellPosition : currentBlockCells) {
+    grid.setCellValue(cellPosition.row, cellPosition.column,
+                      currentBlock->id());
+  }
+
+  currentBlock = nextBlock;
+  nextBlock = popRandomBlock();
+}
