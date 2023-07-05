@@ -71,6 +71,16 @@ bool Game::isBlockOutsideGrid() {
   return false;
 }
 
+bool Game::blockFits() {
+  for (auto cellPosition : currentBlock->getMovedCellPositions()) {
+    if (!grid.isCellEmpty(cellPosition.row, cellPosition.column)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 void Game::moveBlockLeft() {
   currentBlock->move(0, -1);
 
@@ -89,7 +99,7 @@ void Game::moveBlockRight() {
 void Game::moveBlockDown() {
   currentBlock->move(1, 0);
 
-  if (isBlockOutsideGrid()) {
+  if (isBlockOutsideGrid() || !blockFits()) {
     currentBlock->move(-1, 0);
     lockBlockAndSpawnNextBlock();
   }

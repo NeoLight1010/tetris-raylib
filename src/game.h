@@ -23,6 +23,7 @@ private:
   std::vector<std::shared_ptr<Block>> getDefaultBlocks();
 
   bool isBlockOutsideGrid();
+  bool blockFits();
 
   void lockBlockAndSpawnNextBlock();
 

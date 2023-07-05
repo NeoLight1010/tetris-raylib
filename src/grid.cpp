@@ -38,6 +38,10 @@ void Grid::draw() {
   }
 }
 
+bool Grid::isCellEmpty(int row, int column) {
+  return grid[row][column] == EMPTY_CELL_VALUE;
+}
+
 bool Grid::isCellOutside(int row, int column) {
   return row < 0 || row >= NUM_ROWS || column < 0 || column >= NUM_COLUMNS;
 }
