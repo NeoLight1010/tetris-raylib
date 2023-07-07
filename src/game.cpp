@@ -84,7 +84,7 @@ bool Game::blockFits() {
 void Game::moveBlockLeft() {
   currentBlock->move(0, -1);
 
-  if (isBlockOutsideGrid()) {
+  if (isBlockOutsideGrid() || !blockFits()) {
     currentBlock->move(0, 1);
   }
 }
@@ -92,7 +92,7 @@ void Game::moveBlockLeft() {
 void Game::moveBlockRight() {
   currentBlock->move(0, 1);
 
-  if (isBlockOutsideGrid()) {
+  if (isBlockOutsideGrid() || !blockFits()) {
     currentBlock->move(0, -1);
   }
 }
