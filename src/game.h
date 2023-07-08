@@ -11,6 +11,7 @@ public:
 
   Game();
   void applyGravity();
+  void checkForFullRows();
   void draw();
   void handleInput();
 

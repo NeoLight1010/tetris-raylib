@@ -27,6 +27,7 @@ int main() {
 
     if (deltaTimeHasPassed(0.5)) {
       game.applyGravity();
+      game.checkForFullRows();
     }
 
     BeginDrawing();

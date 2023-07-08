@@ -58,6 +58,8 @@ void Game::handleInput() {
   }
 }
 
+void Game::checkForFullRows() { grid.popFullRows(); }
+
 bool Game::isBlockOutsideGrid() {
   std::vector<Position> currentBlockCells =
       currentBlock->getMovedCellPositions();

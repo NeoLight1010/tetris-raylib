@@ -15,10 +15,17 @@ public:
   bool isCellEmpty(int row, int column);
   bool isCellOutside(int row, int column);
 
+  void popFullRows();
+
   void setCellValue(int row, int column, int value);
 
 private:
   int grid[NUM_ROWS][NUM_COLUMNS];
 
   void initializeGrid();
+
+  bool isRowFull(int row);
+  void popRow(int row);
+  void clearRow(int row);
+  void moveDownRowsAbove(int row);
 };
