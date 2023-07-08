@@ -32,7 +32,7 @@ private:
   void moveBlockRight();
   void moveBlockDown();
 
-  void moveBlockIfItFits(int rows, int columns);
+  bool moveBlockIfItFits(int rows, int columns);
 
   void rotateBlockForward();
   void rotateBlockBackward();

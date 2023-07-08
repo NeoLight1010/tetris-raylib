@@ -85,15 +85,26 @@ bool Game::blockFits() {
 
 void Game::moveBlockLeft() { moveBlockIfItFits(0, -1); }
 void Game::moveBlockRight() { moveBlockIfItFits(0, 1); }
-void Game::moveBlockDown() { moveBlockIfItFits(1, 0); }
 
-void Game::moveBlockIfItFits(int rows, int columns) {
+void Game::moveBlockDown() {
+  bool blockWasMoved = moveBlockIfItFits(1, 0);
+
+  if (!blockWasMoved) {
+    lockBlockAndSpawnNextBlock();
+  }
+}
+
+bool Game::moveBlockIfItFits(int rows, int columns) {
   currentBlock->move(rows, columns);
+
+  bool blockWasMoved = true;
 
   if (isBlockOutsideGrid() || !blockFits()) {
     currentBlock->move(-rows, -columns);
-    lockBlockAndSpawnNextBlock();
+    blockWasMoved = false;
   }
+
+  return blockWasMoved;
 }
 
 void Game::rotateBlockForward() {
