@@ -49,11 +49,15 @@ void Game::handleInput() {
     break;
 
   case KEY_Z:
-    rotateBlockBackward();
+    if (!gameOver) {
+      rotateBlockBackward();
+    }
     break;
 
   case KEY_X:
-    rotateBlockForward();
+    if (!gameOver) {
+      rotateBlockForward();
+    }
     break;
   }
 }
