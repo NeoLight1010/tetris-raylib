@@ -25,7 +25,7 @@ int main() {
   while (!WindowShouldClose()) {
     game.handleInput();
 
-    if (deltaTimeHasPassed(0.5)) {
+    if (deltaTimeHasPassed(0.05)) {
       game.applyGravity();
       game.checkForFullRows();
     }

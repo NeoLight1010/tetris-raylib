@@ -89,7 +89,7 @@ void Game::moveBlockRight() { moveBlockIfItFits(0, 1); }
 void Game::moveBlockDown() {
   bool blockWasMoved = moveBlockIfItFits(1, 0);
 
-  if (!blockWasMoved) {
+  if (!blockWasMoved && !gameOver) {
     lockBlockAndSpawnNextBlock();
   }
 }
@@ -135,5 +135,10 @@ void Game::lockBlockAndSpawnNextBlock() {
   }
 
   currentBlock = nextBlock;
+
+  if (!blockFits()) {
+    gameOver = true;
+  }
+
   nextBlock = popRandomBlock();
 }

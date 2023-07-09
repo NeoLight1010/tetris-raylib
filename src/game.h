@@ -7,6 +7,8 @@
 
 class Game {
 public:
+  bool gameOver = false;
+
   Grid grid = Grid();
 
   Game();
