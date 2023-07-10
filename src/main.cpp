@@ -17,7 +17,10 @@ bool deltaTimeHasPassed(double interval) {
 }
 
 int main() {
-  InitWindow(300, 600, "Tetris");
+  int windowWidth = Grid::NUM_COLUMNS * Grid::CELL_SIZE + 200;
+  int windowHeight = Grid::NUM_ROWS * Grid::CELL_SIZE + 20;
+
+  InitWindow(windowWidth, windowHeight, "Tetris");
   SetTargetFPS(60);
 
   auto game = Game();
@@ -25,7 +28,7 @@ int main() {
   while (!WindowShouldClose()) {
     game.handleInput();
 
-    if (deltaTimeHasPassed(0.05)) {
+    if (deltaTimeHasPassed(0.2)) {
       game.applyGravity();
       game.checkForFullRows();
     }
