@@ -1,8 +1,21 @@
 #include "blocks.cpp"
 #include "colors.h"
 #include "game.h"
+#include <cstddef>
 #include <raylib.h>
 #include <stdlib.h>
+
+void drawHUD(Font font, bool gameOver) {
+  DrawTextEx(font, "Score", {365, 15}, 38, 2, WHITE);
+  DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
+
+  DrawTextEx(font, "Next", {370, 175}, 38, 2, WHITE);
+  DrawRectangleRounded({320, 215, 170, 180}, 0.3, 6, BLUE);
+
+  if (gameOver) {
+    DrawTextEx(font, "Game Over", {320, 450}, 38, 2, RED);
+  }
+}
 
 double lastUpdateTime = 0;
 
@@ -19,6 +32,8 @@ bool deltaTimeHasPassed(double interval) {
 
 int main() {
   auto game = Game();
+
+  Font font = LoadFontEx("fonts/monogram.ttf", 64, NULL, 0);
 
   int windowWidth = game.grid.NUM_COLUMNS * game.CELL_SIZE + 200;
   int windowHeight = game.grid.NUM_ROWS * game.CELL_SIZE + 20;
@@ -38,6 +53,7 @@ int main() {
 
     ClearBackground(DARKBLUE);
     game.draw();
+    drawHUD(font, game.gameOver);
 
     EndDrawing();
   }
