@@ -158,7 +158,8 @@ void Game::restart() {
 }
 
 void Game::drawGrid() {
-  const int padding = 1;
+  const int padding = 10;
+  const int BORDER_WIDTH = 1;
 
   auto gridCells = grid.getGrid();
 
@@ -167,7 +168,7 @@ void Game::drawGrid() {
       int cellValue = gridCells[row][column];
 
       DrawRectangle(column * CELL_SIZE + padding, row * CELL_SIZE + padding,
-                    CELL_SIZE - padding, CELL_SIZE - padding,
+                    CELL_SIZE - BORDER_WIDTH, CELL_SIZE - BORDER_WIDTH,
                     getCellColor(cellValue));
     }
   }
