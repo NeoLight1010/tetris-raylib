@@ -1,4 +1,5 @@
 #include "blocks.cpp"
+#include "colors.h"
 #include "game.h"
 #include <raylib.h>
 #include <stdlib.h>
@@ -17,13 +18,13 @@ bool deltaTimeHasPassed(double interval) {
 }
 
 int main() {
-  int windowWidth = Grid::NUM_COLUMNS * Grid::CELL_SIZE + 200;
-  int windowHeight = Grid::NUM_ROWS * Grid::CELL_SIZE + 20;
+  auto game = Game();
+
+  int windowWidth = game.grid.NUM_COLUMNS * game.CELL_SIZE + 200;
+  int windowHeight = game.grid.NUM_ROWS * game.CELL_SIZE + 20;
 
   InitWindow(windowWidth, windowHeight, "Tetris");
   SetTargetFPS(60);
-
-  auto game = Game();
 
   while (!WindowShouldClose()) {
     game.handleInput();

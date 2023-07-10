@@ -1,5 +1,6 @@
 #include "game.h"
 #include "blocks.cpp"
+#include "colors.h"
 #include "position.h"
 #include "raylib.h"
 #include <iostream>
@@ -31,7 +32,7 @@ std::vector<std::shared_ptr<Block>> Game::getDefaultBlocks() {
 };
 
 void Game::draw() {
-  grid.draw();
+  drawGrid();
   currentBlock->draw();
 };
 
@@ -154,4 +155,20 @@ void Game::restart() {
   blocks = getDefaultBlocks();
   currentBlock = popRandomBlock();
   nextBlock = popRandomBlock();
+}
+
+void Game::drawGrid() {
+  const int padding = 1;
+
+  auto gridCells = grid.getGrid();
+
+  for (int row = 0; row < grid.NUM_ROWS; row++) {
+    for (int column = 0; column < grid.NUM_COLUMNS; column++) {
+      int cellValue = gridCells[row][column];
+
+      DrawRectangle(column * CELL_SIZE + padding, row * CELL_SIZE + padding,
+                    CELL_SIZE - padding, CELL_SIZE - padding,
+                    getCellColor(cellValue));
+    }
+  }
 }

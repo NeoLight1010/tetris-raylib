@@ -7,6 +7,8 @@
 
 class Game {
 public:
+  const static int CELL_SIZE = 30;
+
   bool gameOver = false;
 
   Grid grid = Grid();
@@ -25,6 +27,8 @@ private:
 
   std::shared_ptr<Block> popRandomBlock();
   std::vector<std::shared_ptr<Block>> getDefaultBlocks();
+
+  void drawGrid();
 
   bool isBlockOutsideGrid();
   bool blockFits();

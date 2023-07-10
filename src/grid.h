@@ -1,3 +1,4 @@
+#include <array>
 #include <raylib.h>
 #include <vector>
 
@@ -5,12 +6,10 @@ class Grid {
 public:
   static const int NUM_ROWS = 20;
   static const int NUM_COLUMNS = 10;
-  static const int CELL_SIZE = 30;
   static const int EMPTY_CELL_VALUE = 0;
 
   Grid();
   void debugPrint();
-  void draw();
   void initialize();
 
   bool isCellEmpty(int row, int column);
@@ -20,8 +19,10 @@ public:
 
   void setCellValue(int row, int column, int value);
 
+  std::array<std::array<int, NUM_COLUMNS>, NUM_ROWS> getGrid();
+
 private:
-  int grid[NUM_ROWS][NUM_COLUMNS];
+  std::array<std::array<int, NUM_COLUMNS>, NUM_ROWS> grid;
 
   bool isRowFull(int row);
   void popRow(int row);

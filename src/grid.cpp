@@ -1,5 +1,6 @@
 #include "grid.h"
 #include "colors.h"
+#include <array>
 #include <iostream>
 #include <raylib.h>
 #include <vector>
@@ -21,20 +22,6 @@ void Grid::debugPrint() {
     }
 
     std::cout << std::endl;
-  }
-}
-
-void Grid::draw() {
-  const int padding = 1;
-
-  for (int row = 0; row < NUM_ROWS; row++) {
-    for (int column = 0; column < NUM_COLUMNS; column++) {
-      int cellValue = grid[row][column];
-
-      DrawRectangle(column * CELL_SIZE + padding, row * CELL_SIZE + padding,
-                    CELL_SIZE - padding, CELL_SIZE - padding,
-                    getCellColor(cellValue));
-    }
   }
 }
 
@@ -86,4 +73,8 @@ void Grid::moveDownRowsAbove(int row) {
 
 void Grid::setCellValue(int row, int column, int value) {
   grid[row][column] = value;
+}
+
+std::array<std::array<int, Grid::NUM_COLUMNS>, Grid::NUM_ROWS> Grid::getGrid() {
+  return grid;
 }
