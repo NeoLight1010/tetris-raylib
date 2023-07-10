@@ -11,6 +11,7 @@ public:
   Grid();
   void debugPrint();
   void draw();
+  void initialize();
 
   bool isCellEmpty(int row, int column);
   bool isCellOutside(int row, int column);
@@ -21,8 +22,6 @@ public:
 
 private:
   int grid[NUM_ROWS][NUM_COLUMNS];
-
-  void initializeGrid();
 
   bool isRowFull(int row);
   void popRow(int row);

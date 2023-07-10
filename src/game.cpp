@@ -37,6 +37,12 @@ void Game::draw() {
 
 void Game::handleInput() {
   int keyPressed = GetKeyPressed();
+
+  if (gameOver && keyPressed != 0) {
+    restart();
+    return;
+  }
+
   switch (keyPressed) {
   case KEY_LEFT:
     moveBlockLeft();
@@ -49,16 +55,10 @@ void Game::handleInput() {
     break;
 
   case KEY_Z:
-    if (!gameOver) {
-      rotateBlockBackward();
-    }
+    rotateBlockBackward();
     break;
-
   case KEY_X:
-    if (!gameOver) {
-      rotateBlockForward();
-    }
-    break;
+    rotateBlockForward();
   }
 }
 
@@ -144,5 +144,14 @@ void Game::lockBlockAndSpawnNextBlock() {
     gameOver = true;
   }
 
+  nextBlock = popRandomBlock();
+}
+
+void Game::restart() {
+  gameOver = false;
+
+  grid.initialize();
+  blocks = getDefaultBlocks();
+  currentBlock = popRandomBlock();
   nextBlock = popRandomBlock();
 }

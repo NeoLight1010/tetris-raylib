@@ -16,6 +16,7 @@ public:
   void checkForFullRows();
   void draw();
   void handleInput();
+  void restart();
 
 private:
   std::vector<std::shared_ptr<Block>> blocks = getDefaultBlocks();

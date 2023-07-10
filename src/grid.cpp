@@ -4,9 +4,9 @@
 #include <raylib.h>
 #include <vector>
 
-Grid::Grid() { initializeGrid(); }
+Grid::Grid() { initialize(); }
 
-void Grid::initializeGrid() {
+void Grid::initialize() {
   for (int row = 0; row < NUM_ROWS; row++) {
     for (int column = 0; column < NUM_COLUMNS; column++) {
       grid[row][column] = 0;
