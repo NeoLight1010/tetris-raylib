@@ -6,18 +6,6 @@
 
 Block::Block(){};
 
-void Block::draw() {
-  const int BORDER_WIDTH = 1;
-
-  std::vector<Position> currentRotationCells = rotations[rotationState];
-
-  for (Position cell : getMovedCellPositions()) {
-    DrawRectangle(cell.column * cellSize + 10, cell.row * cellSize + 10,
-                  cellSize - BORDER_WIDTH, cellSize - BORDER_WIDTH,
-                  getCellColor(id()));
-  }
-}
-
 void Block::move(int rows, int columns) {
   rowOffset += rows;
   columnOffset += columns;

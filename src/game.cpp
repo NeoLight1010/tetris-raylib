@@ -33,7 +33,7 @@ std::vector<std::shared_ptr<Block>> Game::getDefaultBlocks() {
 
 void Game::draw() {
   drawGrid();
-  currentBlock->draw();
+  drawBlock();
 };
 
 void Game::handleInput() {
@@ -158,7 +158,6 @@ void Game::restart() {
 }
 
 void Game::drawGrid() {
-  const int padding = 10;
   const int BORDER_WIDTH = 1;
 
   auto gridCells = grid.getGrid();
@@ -167,9 +166,22 @@ void Game::drawGrid() {
     for (int column = 0; column < grid.NUM_COLUMNS; column++) {
       int cellValue = gridCells[row][column];
 
-      DrawRectangle(column * CELL_SIZE + padding, row * CELL_SIZE + padding,
-                    CELL_SIZE - BORDER_WIDTH, CELL_SIZE - BORDER_WIDTH,
-                    getCellColor(cellValue));
+      DrawRectangle(column * CELL_SIZE + PADDING_SIZE,
+                    row * CELL_SIZE + PADDING_SIZE, CELL_SIZE - BORDER_WIDTH,
+                    CELL_SIZE - BORDER_WIDTH, getCellColor(cellValue));
     }
+  }
+}
+
+void Game::drawBlock() {
+  const int BORDER_WIDTH = 1;
+
+  std::vector<Position> currentRotationCells =
+      currentBlock->rotations[currentBlock->rotationState];
+
+  for (Position cell : currentBlock->getMovedCellPositions()) {
+    DrawRectangle(cell.column * CELL_SIZE + PADDING_SIZE,
+                  cell.row * CELL_SIZE + PADDING_SIZE, CELL_SIZE - BORDER_WIDTH,
+                  CELL_SIZE - BORDER_WIDTH, getCellColor(currentBlock->id()));
   }
 }

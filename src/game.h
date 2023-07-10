@@ -8,6 +8,7 @@
 class Game {
 public:
   const static int CELL_SIZE = 30;
+  const static int PADDING_SIZE = 10;
 
   bool gameOver = false;
 
@@ -29,6 +30,7 @@ private:
   std::vector<std::shared_ptr<Block>> getDefaultBlocks();
 
   void drawGrid();
+  void drawBlock();
 
   bool isBlockOutsideGrid();
   bool blockFits();
