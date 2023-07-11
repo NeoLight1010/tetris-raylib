@@ -35,6 +35,8 @@ private:
   void drawGrid();
   void drawBlock();
 
+  void giveScoreForFullRows(int fullRows);
+
   bool isBlockOutsideGrid();
   bool blockFits();
 

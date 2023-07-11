@@ -96,10 +96,26 @@ void Game::moveBlockDown() {
     lockBlockAndSpawnNextBlock();
 
     int poppedRows = grid.popFullRows();
+    giveScoreForFullRows(poppedRows);
+  }
+}
 
-    if (poppedRows > 0) {
-      score += 1;
-    }
+void Game::giveScoreForFullRows(int fullRows) {
+  switch (fullRows) {
+  case 1:
+    score += 100;
+    break;
+  case 2:
+    score += 300;
+    break;
+  case 3:
+    score += 500;
+    break;
+  case 4:
+    score += 800;
+    break;
+  default:
+    break;
   }
 }
 
