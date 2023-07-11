@@ -5,9 +5,10 @@
 #include <raylib.h>
 #include <stdlib.h>
 
-void drawHUD(Font font, bool gameOver) {
+void drawHUD(Font font, bool gameOver, int score) {
   DrawTextEx(font, "Score", {365, 15}, 38, 2, WHITE);
   DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
+  DrawTextEx(font, std::to_string(score).c_str(), {330, 65}, 38, 2, WHITE);
 
   DrawTextEx(font, "Next", {370, 175}, 38, 2, WHITE);
   DrawRectangleRounded({320, 215, 170, 180}, 0.3, 6, BLUE);
@@ -52,7 +53,7 @@ int main() {
 
     ClearBackground(DARKBLUE);
     game.draw();
-    drawHUD(font, game.gameOver);
+    drawHUD(font, game.gameOver, game.getScore());
 
     EndDrawing();
   }

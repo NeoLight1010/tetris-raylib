@@ -20,7 +20,11 @@ public:
   void handleInput();
   void restart();
 
+  int getScore() { return score; }
+
 private:
+  int score = 0;
+
   std::vector<std::shared_ptr<Block>> blocks = getDefaultBlocks();
   std::shared_ptr<Block> currentBlock = popRandomBlock();
   std::shared_ptr<Block> nextBlock = popRandomBlock();

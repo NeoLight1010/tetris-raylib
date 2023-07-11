@@ -33,12 +33,17 @@ bool Grid::isCellOutside(int row, int column) {
   return row < 0 || row >= NUM_ROWS || column < 0 || column >= NUM_COLUMNS;
 }
 
-void Grid::popFullRows() {
+int Grid::popFullRows() {
+  int rowsPopped = 0;
+
   for (int row = 0; row < NUM_ROWS; row++) {
     if (isRowFull(row)) {
       popRow(row);
+      rowsPopped++;
     }
   }
+
+  return rowsPopped;
 }
 
 bool Grid::isRowFull(int row) {

@@ -15,7 +15,7 @@ public:
   bool isCellEmpty(int row, int column);
   bool isCellOutside(int row, int column);
 
-  void popFullRows();
+  int popFullRows();
 
   void setCellValue(int row, int column, int value);
 

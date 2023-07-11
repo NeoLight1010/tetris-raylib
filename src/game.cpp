@@ -94,7 +94,12 @@ void Game::moveBlockDown() {
 
   if (!blockWasMoved && !gameOver) {
     lockBlockAndSpawnNextBlock();
-    grid.popFullRows();
+
+    int poppedRows = grid.popFullRows();
+
+    if (poppedRows > 0) {
+      score += 1;
+    }
   }
 }
 
