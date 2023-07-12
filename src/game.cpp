@@ -33,7 +33,6 @@ std::vector<std::shared_ptr<Block>> Game::getDefaultBlocks() {
 
 void Game::draw() {
   drawGrid();
-  drawBlock();
 };
 
 void Game::handleInput() {
@@ -191,18 +190,5 @@ void Game::drawGrid() {
                     row * CELL_SIZE + PADDING_SIZE, CELL_SIZE - BORDER_WIDTH,
                     CELL_SIZE - BORDER_WIDTH, getCellColor(cellValue));
     }
-  }
-}
-
-void Game::drawBlock() {
-  const int BORDER_WIDTH = 1;
-
-  std::vector<Position> currentRotationCells =
-      currentBlock->rotations[currentBlock->rotationState];
-
-  for (Position cell : currentBlock->getMovedCellPositions()) {
-    DrawRectangle(cell.column * CELL_SIZE + PADDING_SIZE,
-                  cell.row * CELL_SIZE + PADDING_SIZE, CELL_SIZE - BORDER_WIDTH,
-                  CELL_SIZE - BORDER_WIDTH, getCellColor(currentBlock->id()));
   }
 }

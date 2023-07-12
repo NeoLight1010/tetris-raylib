@@ -20,6 +20,7 @@ public:
   void handleInput();
   void restart();
 
+  std::shared_ptr<Block> getCurrentBlock() { return currentBlock; }
   int getScore() { return score; }
 
 private:
@@ -33,7 +34,6 @@ private:
   std::vector<std::shared_ptr<Block>> getDefaultBlocks();
 
   void drawGrid();
-  void drawBlock();
 
   void giveScoreForFullRows(int fullRows);
   void giveScoreForManualDrop() { score += 1; };

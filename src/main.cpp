@@ -1,3 +1,4 @@
+#include "block.h"
 #include "blocks.cpp"
 #include "colors.h"
 #include "game.h"
@@ -35,6 +36,20 @@ void drawScoreIndicator(Font font, int score) {
       BLUE);
 
   drawScoreText(score, backgroundX, backgroundWidth, font);
+}
+
+void drawBlock(Block *block, Game game) {
+  const int BORDER_WIDTH = 1;
+
+  std::vector<Position> currentRotationCells =
+      block->rotations[block->rotationState];
+
+  for (Position cell : block->getMovedCellPositions()) {
+    DrawRectangle(cell.column * game.CELL_SIZE + game.PADDING_SIZE,
+                  cell.row * game.CELL_SIZE + game.PADDING_SIZE,
+                  game.CELL_SIZE - BORDER_WIDTH, game.CELL_SIZE - BORDER_WIDTH,
+                  getCellColor(block->id()));
+  }
 }
 
 void drawHUD(Font font, bool gameOver, int score) {
@@ -83,6 +98,7 @@ int main() {
 
     ClearBackground(DARKBLUE);
     game.draw();
+    drawBlock(&*game.getCurrentBlock(), game);
     drawHUD(font, game.gameOver, game.getScore());
 
     EndDrawing();
