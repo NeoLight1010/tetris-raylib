@@ -21,6 +21,7 @@ public:
   void restart();
 
   std::shared_ptr<Block> getCurrentBlock() { return currentBlock; }
+  std::shared_ptr<Block> getNextBlock() { return nextBlock; }
   int getScore() { return score; }
 
 private:

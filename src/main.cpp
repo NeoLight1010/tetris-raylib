@@ -38,27 +38,56 @@ void drawScoreIndicator(Font font, int score) {
   drawScoreText(score, backgroundX, backgroundWidth, font);
 }
 
-void drawBlock(Block *block, Game game) {
+void drawBlock(Block &block, float cellSize, Vector2 offset) {
   const int BORDER_WIDTH = 1;
 
   std::vector<Position> currentRotationCells =
-      block->rotations[block->rotationState];
+      block.rotations[block.rotationState];
 
-  for (Position cell : block->getMovedCellPositions()) {
-    DrawRectangle(cell.column * game.CELL_SIZE + game.PADDING_SIZE,
-                  cell.row * game.CELL_SIZE + game.PADDING_SIZE,
-                  game.CELL_SIZE - BORDER_WIDTH, game.CELL_SIZE - BORDER_WIDTH,
-                  getCellColor(block->id()));
+  for (Position cell : block.getMovedCellPositions()) {
+    DrawRectangle(cell.column * cellSize + offset.x,
+                  cell.row * cellSize + offset.y, cellSize - BORDER_WIDTH,
+                  cellSize - BORDER_WIDTH, getCellColor(block.id()));
   }
 }
 
-void drawHUD(Font font, bool gameOver, int score) {
-  drawScoreIndicator(font, score);
+void drawGameCurrentBlock(Game game) {
+  drawBlock(*game.getCurrentBlock(), game.CELL_SIZE,
+            {game.PADDING_SIZE, game.PADDING_SIZE});
+}
 
+void drawNextBlockIndicator(Font font, Game game) {
   DrawTextEx(font, "Next", {370, 175}, 38, 2, WHITE);
+
   DrawRectangleRounded({320, 215, 170, 180}, 0.3, 6, BLUE);
 
-  if (gameOver) {
+  float offsetX = 0;
+  float offsetY = 0;
+
+  auto block = game.getNextBlock();
+  switch (block->id()) {
+  case 3:
+    offsetX = 255;
+    offsetY = 290;
+    break;
+  case 4:
+    offsetX = 255;
+    offsetY = 280;
+    break;
+  default:
+    offsetX = 270;
+    offsetY = 270;
+    break;
+  }
+
+  drawBlock(*game.getNextBlock(), game.CELL_SIZE, {offsetX, offsetY});
+}
+
+void drawHUD(Font font, Game &game) {
+  drawScoreIndicator(font, game.getScore());
+  drawNextBlockIndicator(font, game);
+
+  if (game.gameOver) {
     DrawTextEx(font, "Game Over", {320, 450}, 38, 2, RED);
   }
 }
@@ -98,8 +127,8 @@ int main() {
 
     ClearBackground(DARKBLUE);
     game.draw();
-    drawBlock(&*game.getCurrentBlock(), game);
-    drawHUD(font, game.gameOver, game.getScore());
+    drawGameCurrentBlock(game);
+    drawHUD(font, game);
 
     EndDrawing();
   }
