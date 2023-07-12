@@ -53,6 +53,7 @@ void Game::handleInput() {
     break;
   case KEY_DOWN:
     moveBlockDown();
+    giveScoreForManualDrop();
     break;
 
   case KEY_Z:

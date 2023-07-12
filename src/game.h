@@ -36,6 +36,7 @@ private:
   void drawBlock();
 
   void giveScoreForFullRows(int fullRows);
+  void giveScoreForManualDrop() { score += 1; };
 
   bool isBlockOutsideGrid();
   bool blockFits();
