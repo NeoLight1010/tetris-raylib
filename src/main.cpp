@@ -116,7 +116,7 @@ void drawAll(Game game, Font font) {
   EndDrawing();
 }
 
-void handleGameInput(Game &game) {
+void handleGameInput(Game &game, Sound &rotateSound) {
   int keyPressed = GetKeyPressed();
 
   if (game.gameOver && keyPressed != 0) {
@@ -137,15 +137,17 @@ void handleGameInput(Game &game) {
     break;
 
   case KEY_Z:
+    PlaySound(rotateSound);
     game.rotateBlockBackward();
     break;
   case KEY_X:
+    PlaySound(rotateSound);
     game.rotateBlockForward();
   }
 }
 
-void updateGame(Game &game) {
-  handleGameInput(game);
+void updateGame(Game &game, Sound &rotateSound) {
+  handleGameInput(game, rotateSound);
 
   if (deltaTimeHasPassed(0.2)) {
     game.applyGravity();
@@ -167,6 +169,7 @@ int main() {
 
   Music music = LoadMusicStream("../sounds/music.mp3");
   Sound clearSound = LoadSound("../sounds/clear.mp3");
+  Sound rotateSound = LoadSound("../sounds/rotate.mp3");
 
   auto eventHandler = MainGameEventHandler(clearSound);
   auto game = Game(eventHandler);
@@ -184,7 +187,7 @@ int main() {
   while (!WindowShouldClose()) {
     UpdateMusicStream(music);
 
-    updateGame(game);
+    updateGame(game, rotateSound);
     drawAll(game, font);
   }
 
