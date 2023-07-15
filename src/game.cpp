@@ -2,7 +2,6 @@
 #include "blocks.cpp"
 #include "colors.h"
 #include "position.h"
-#include "raylib.h"
 #include <iostream>
 #include <memory>
 #include <random>
@@ -31,37 +30,7 @@ std::vector<std::shared_ptr<Block>> Game::getDefaultBlocks() {
           std::make_unique<IBlock>()};
 };
 
-void Game::draw() {
-  drawGrid();
-};
-
-void Game::handleInput() {
-  int keyPressed = GetKeyPressed();
-
-  if (gameOver && keyPressed != 0) {
-    restart();
-    return;
-  }
-
-  switch (keyPressed) {
-  case KEY_LEFT:
-    moveBlockLeft();
-    break;
-  case KEY_RIGHT:
-    moveBlockRight();
-    break;
-  case KEY_DOWN:
-    moveBlockDown();
-    giveScoreForManualDrop();
-    break;
-
-  case KEY_Z:
-    rotateBlockBackward();
-    break;
-  case KEY_X:
-    rotateBlockForward();
-  }
-}
+void Game::draw() { drawGrid(); };
 
 bool Game::isBlockOutsideGrid() {
   std::vector<Position> currentBlockCells =

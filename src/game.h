@@ -17,12 +17,20 @@ public:
   Game();
   void applyGravity();
   void draw();
-  void handleInput();
   void restart();
 
   std::shared_ptr<Block> getCurrentBlock() { return currentBlock; }
   std::shared_ptr<Block> getNextBlock() { return nextBlock; }
   int getScore() { return score; }
+
+  void moveBlockLeft();
+  void moveBlockRight();
+  void moveBlockDown();
+
+  void rotateBlockForward();
+  void rotateBlockBackward();
+
+  void giveScoreForManualDrop() { score += 1; };
 
 private:
   int score = 0;
@@ -37,19 +45,11 @@ private:
   void drawGrid();
 
   void giveScoreForFullRows(int fullRows);
-  void giveScoreForManualDrop() { score += 1; };
 
   bool isBlockOutsideGrid();
   bool blockFits();
 
   void lockBlockAndSpawnNextBlock();
 
-  void moveBlockLeft();
-  void moveBlockRight();
-  void moveBlockDown();
-
   bool moveBlockIfItFits(int rows, int columns);
-
-  void rotateBlockForward();
-  void rotateBlockBackward();
 };

@@ -116,8 +116,37 @@ void drawAll(Game game, Font font) {
   EndDrawing();
 }
 
+void handleGameInput(Game &game) {
+  int keyPressed = GetKeyPressed();
+
+  if (game.gameOver && keyPressed != 0) {
+    game.restart();
+    return;
+  }
+
+  switch (keyPressed) {
+  case KEY_LEFT:
+    game.moveBlockLeft();
+    break;
+  case KEY_RIGHT:
+    game.moveBlockRight();
+    break;
+  case KEY_DOWN:
+    game.moveBlockDown();
+    game.giveScoreForManualDrop();
+    break;
+
+  case KEY_Z:
+    game.rotateBlockBackward();
+    break;
+  case KEY_X:
+    game.rotateBlockForward();
+  }
+}
+
 void updateGame(Game &game) {
-  game.handleInput();
+  handleGameInput(game);
+
   if (deltaTimeHasPassed(0.2)) {
     game.applyGravity();
   }
