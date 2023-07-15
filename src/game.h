@@ -5,6 +5,11 @@
 #include <memory>
 #include <vector>
 
+class GameEventHandler {
+public:
+  virtual void onRowsClear() = 0;
+};
+
 class Game {
 public:
   const static int CELL_SIZE = 30;
@@ -14,7 +19,7 @@ public:
 
   Grid grid = Grid();
 
-  Game();
+  Game(GameEventHandler &eventHandler);
   void applyGravity();
   void draw();
   void restart();
@@ -33,6 +38,8 @@ public:
   void giveScoreForManualDrop() { score += 1; };
 
 private:
+  GameEventHandler &eventHandler;
+
   int score = 0;
 
   std::vector<std::shared_ptr<Block>> blocks = getDefaultBlocks();

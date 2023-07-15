@@ -152,8 +152,24 @@ void updateGame(Game &game) {
   }
 }
 
+class MainGameEventHandler : public GameEventHandler {
+public:
+  MainGameEventHandler(Sound &clearSound) : clearSound(clearSound) {}
+
+  void onRowsClear() { PlaySound(clearSound); }
+
+private:
+  Sound &clearSound;
+};
+
 int main() {
-  auto game = Game();
+  InitAudioDevice();
+
+  Music music = LoadMusicStream("../sounds/music.mp3");
+  Sound clearSound = LoadSound("../sounds/clear.mp3");
+
+  auto eventHandler = MainGameEventHandler(clearSound);
+  auto game = Game(eventHandler);
 
   int windowWidth = game.grid.NUM_COLUMNS * game.CELL_SIZE + 200;
   int windowHeight = game.grid.NUM_ROWS * game.CELL_SIZE + 20;
@@ -161,11 +177,9 @@ int main() {
   InitWindow(windowWidth, windowHeight, "Tetris");
   SetTargetFPS(60);
 
-  InitAudioDevice();
-  Music music = LoadMusicStream("../sounds/music.mp3");
-  PlayMusicStream(music);
-
   Font font = GetFontDefault();
+
+  PlayMusicStream(music);
 
   while (!WindowShouldClose()) {
     UpdateMusicStream(music);
@@ -175,6 +189,7 @@ int main() {
   }
 
   UnloadMusicStream(music);
+  UnloadSound(clearSound);
   CloseAudioDevice();
 
   return 0;

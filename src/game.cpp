@@ -7,7 +7,7 @@
 #include <random>
 #include <vector>
 
-Game::Game(){};
+Game::Game(GameEventHandler &eventHandler) : eventHandler(eventHandler){};
 
 std::shared_ptr<Block> Game::popRandomBlock() {
   if (blocks.empty()) {
@@ -65,6 +65,11 @@ void Game::moveBlockDown() {
     lockBlockAndSpawnNextBlock();
 
     int poppedRows = grid.popFullRows();
+
+    if (poppedRows > 0) {
+      eventHandler.onRowsClear();
+    }
+
     giveScoreForFullRows(poppedRows);
   }
 }
