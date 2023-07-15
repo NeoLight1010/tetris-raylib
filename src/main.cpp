@@ -105,10 +105,26 @@ bool deltaTimeHasPassed(double interval) {
   return false;
 }
 
+void drawAll(Game game, Font font) {
+  BeginDrawing();
+
+  ClearBackground(DARKBLUE);
+  game.draw();
+  drawGameCurrentBlock(game);
+  drawHUD(font, game);
+
+  EndDrawing();
+}
+
+void updateGame(Game &game) {
+  game.handleInput();
+  if (deltaTimeHasPassed(0.2)) {
+    game.applyGravity();
+  }
+}
+
 int main() {
   auto game = Game();
-
-  Font font = GetFontDefault();
 
   int windowWidth = game.grid.NUM_COLUMNS * game.CELL_SIZE + 200;
   int windowHeight = game.grid.NUM_ROWS * game.CELL_SIZE + 20;
@@ -116,22 +132,21 @@ int main() {
   InitWindow(windowWidth, windowHeight, "Tetris");
   SetTargetFPS(60);
 
+  InitAudioDevice();
+  Music music = LoadMusicStream("../sounds/music.mp3");
+  PlayMusicStream(music);
+
+  Font font = GetFontDefault();
+
   while (!WindowShouldClose()) {
-    game.handleInput();
+    UpdateMusicStream(music);
 
-    if (deltaTimeHasPassed(0.2)) {
-      game.applyGravity();
-    }
-
-    BeginDrawing();
-
-    ClearBackground(DARKBLUE);
-    game.draw();
-    drawGameCurrentBlock(game);
-    drawHUD(font, game);
-
-    EndDrawing();
+    updateGame(game);
+    drawAll(game, font);
   }
+
+  UnloadMusicStream(music);
+  CloseAudioDevice();
 
   return 0;
 }
